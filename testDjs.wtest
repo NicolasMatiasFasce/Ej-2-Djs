@@ -1,0 +1,73 @@
+import Djs.*
+
+describe "Patovas" {
+	
+	test "Rochensen no deja pasar a Von Lukas" {
+		rochensen.dejaPasar(vonLukas)
+		assert.notThat(vonLukas.estaEnElClub())
+	}
+	
+	test "Rochensen deja pasar a Bianker" {
+		rochensen.dejaPasar(bianker)
+		assert.that(bianker.estaEnElClub())
+	}
+	
+	test "Rodrigsen no deja pasar a Von Lukas" {
+		rodrigsen.dejaPasar(vonLukas)
+		assert.notThat(vonLukas.estaEnElClub())
+	}
+	
+	test "Rodrigsen deja pasar a Bianker" {
+		rodrigsen.dejaPasar(bianker)
+		assert.that(bianker.estaEnElClub())
+	}
+	
+	test "Gushtavo Truccensen no deja pasar a Gonzen" {
+		gushtavoTruccensen.dejaPasar(gonzen)
+		assert.notThat(gonzen.estaEnElClub())
+	}
+	
+}
+
+describe "Main Room" {
+	
+	test "Bianker baila en el Main Room, quedando su energia en 100 y su diversion en 110" {
+		bianker.estaEnElClub(true)
+		mainRoom.hacerBailarA(bianker)
+		assert.equals(100,bianker.energia())
+		assert.equals(110,bianker.diversion())
+	}
+	
+	test "Gonzen baila en el Main Room, quedando su energia en 50 y su diversion en 45" {
+		gonzen.estaEnElClub(true)
+		mainRoom.hacerBailarA(gonzen)
+		assert.equals(50,gonzen.energia())
+		assert.equals(45,gonzen.diversion())
+	}
+	
+}
+
+describe "Panorama Bar" {
+	
+	test "Gonzen baila en Panorama Bar mientras toca Dixon, quedando su energia en 30 y su diversion en 135" {
+		gonzen.estaEnElClub(true)
+		panoramaBar.dj(dixon)
+		assert.equals(30,gonzen.energia())
+		assert.equals(135,gonzen.diversion())
+	}
+	
+	test "Bianker baila en Panorama Bar mientras toca Marcel Dettmann, quedando su energia en 0 y su diversion en 1080" {
+		bianker.estaEnElClub(true)
+		panoramaBar.dj(marcelDettmann)
+		assert.equals(0,bianker.energia())
+		assert.equals(1080,bianker.diversion())
+	}
+	
+	test "Von Lukaz baila en Panorama Bar mientras toca Tommy Muñoz, quedando su energia en 70 y su diversion en 70" {
+		vonLukaz.estaEnElClub(true)
+		panoramaBar.dj(tommyMunioz)
+		assert.equals(70,vonLukaz.energia())
+		assert.equals(70,vonLukaz.diversion())
+	}
+	
+}
